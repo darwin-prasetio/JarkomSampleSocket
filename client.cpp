@@ -4,10 +4,10 @@
 */
 
 #include <cstdio>
-#include <sys/types.h>   // Types used in sys/socket.h and netinet/in.h
-#include <netinet/in.h>  // Internet domain address structures and functions
-#include <sys/socket.h>  // Structures and functions used for socket API
-#include <netdb.h>       // Used for domain/DNS hostname lookup
+#include <sys/types.h>   // tipe data penting untuk sys/socket.h dan netinet/in.h
+#include <netinet/in.h>  // fungsi dan struct internet address
+#include <sys/socket.h>  // fungsi dan struct socket API
+#include <netdb.h>       // lookup domain/DNS hostname
 #include <unistd.h>
 #include <cstdlib>
 #include <errno.h>
@@ -20,8 +20,8 @@ int main(int argc, char** argv){
 	}
 	
 	int sock, port, len; char buffer[10];
-    struct sockaddr_in serv_addr;
-    struct hostent *server;
+	struct sockaddr_in serv_addr;
+	struct hostent *server;
 	port = 9000;
 	
 	// buka socket TCP (SOCK_STREAM) dengan alamat IPv4 dan protocol IP
@@ -33,10 +33,10 @@ int main(int argc, char** argv){
 	
 	// buat address server
 	server = gethostbyname(argv[1]);
-    if (server == NULL) {
-        fprintf(stderr,"Host not found\n");
-        exit(1);
-    }
+	if (server == NULL) {
+		fprintf(stderr,"Host not found\n");
+		exit(1);
+	}
 	
 	bzero((char *) &serv_addr, sizeof(serv_addr));
 	serv_addr.sin_family = AF_INET;
@@ -53,7 +53,6 @@ int main(int argc, char** argv){
 	len = write(sock,buffer,10);
 	
 	if (len >= 0){
-	
 		// baca balasan server
 		len = read(sock,buffer,10);
 		if (len >= 0){

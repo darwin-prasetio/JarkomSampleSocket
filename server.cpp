@@ -20,8 +20,6 @@ int main(){
 	struct sockaddr_in serv_addr, cli_addr;
 	int port = 9000, len, n;
 	
-	//signal(SIGINT, sighandler);
-
 	// buka socket TCP (SOCK_STREAM) dengan alamat IPv4 dan protocol IP
 	if((sock = socket(AF_INET, SOCK_STREAM, IPPROTO_IP)) < 0){
 		close(sock);
